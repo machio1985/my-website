@@ -6,7 +6,7 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
-    - text: "Tabnet_HIGGS"
+    - text: "tabnet_HIGGS"
       href: tabnet_HIGGS.html
 
 output:
