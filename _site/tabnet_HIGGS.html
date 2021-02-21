@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>torch,tidymodels,and high-energy physics</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="Tabnet_HIGGS.html">Tabnet_HIGGS</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">torch,tidymodels,and high-energy physics</h1>
+
+</div>
+
+
+<div id="attention" class="section level1">
+<h1>Attention</h1>
+<p>Rでtabnetを実装している記事の日本語訳と写経です。 日本語訳はdeeplぶっ込み&amp;コピペ。()とappendixは私の補足。<br />
+<code>Keydana(2021,Feb.11).RStudioAIBlog:torch,tidymodels,andhigh-energyphysics.Retrievedfromhttps://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/</code></p>
+</div>
+<div id="torchtidymodelsand-high-energy-physics" class="section level1">
+<h1>torch,tidymodels,and high-energy physics</h1>
+<p>今日は「TabNet」のTorch実装である「Tabnet」を紹介します。<br />
+tidymodelsフレームワークと完全に統合された“AttentiveInterpretableTabularLearning”のTorch実装であるtabnetを紹介します。<br />
+tidymodelsのおかげで、ハイパーパラメータのチューニング（ディープラーニングでは面倒なことが多い）が便利で楽しいものになりました。</p>
+<p>で、何がクリックベイト（高エネルギー物理学）なのか？ただのクリックベイトではありません。TabNetを紹介するために、UCIMachineLearningRepositoryで公開されているHiggsデータセット（Baldi,Sadowski,andWhiteson(2014)）を使います。あなたのことは知らないが、私はいつも、物事を学ぶモチベーションを高めてくれるデータセットを使うのが好きだ。しかし、その前に、この記事の主役たちと知り合いになりましょう!Baldi,P.,P.Sadowski,andD.Whiteson.2014.“ディープラーニングを用いた高エネルギー物理学におけるエキゾチック粒子の探索”ネイチャー・コミュ</p>
+</div>
+<div id="tabnet" class="section level1">
+<h1>TabNet</h1>
+<p>TabNetはArikとPfister(2020)で紹介されました。これは3つの理由で興味深い。</p>
+<ol style="list-style-type: decimal">
+<li><p>ディープラーニングがまだあまり評価されていない分野である表形式データに対して非常に競争力の高い性能を主張している。</p></li>
+<li><p>TabNetには解釈可能性の特徴が設計上含まれている。</p></li>
+<li><p>自己監視下での事前学習で大幅に利益を得ることができると主張されていますが、これもまた、この分野では言及するに値しません。</p></li>
+</ol>
+<p>この記事では、(3)については触れませんが、(2)を拡張して、TabNetの内部機能にアクセスする方法を説明します。 RからTabNetを使うには？torchのエコシステムには、同名のモデルを実装しているだけでなく、tidymodelsのワークフローの一部としても利用できるパッケージ、tabnetがあります。</p>
+</div>
+<div id="tidymodels" class="section level1">
+<h1>tidymodels</h1>
+<p>Rを使用する多くのデータサイエンティストにとって、tidymodelsフレームワークは見慣れたものではないでしょう。tidymodelsはモデルのトレーニング、ハイパーパラメータの最適化、推論に高レベルで統一されたアプローチを提供します。 tabnetは、tidymodelsのワークフローをすべて利用できる最初の（多くの中でも特に期待している）Torchモデルです：データの前処理からハイパーパラメータのチューニング、性能評価、推論まで。最初のものと最後のものは必須ではありませんが、チューニングの経験はなくてはならないものではないでしょう。</p>
+</div>
+<div id="using-tabnet-with-tidymodels" class="section level1">
+<h1>Using tabnet with tidymodels</h1>
+<p>この記事では、まず、論文で報告されているハイパーパラメータの設定を利用したタブネットを利用したワークフローを簡単に紹介します。</p>
+<p>次に、Tidymodelsを使ったハイパーパラメータ検索を開始し、基本的なことに焦点を当てながら、自由に掘り下げていきます。</p>
+<p>最後に、解釈可能性の約束に立ち返り、タブネットが提供するものを実演し、短い議論で締めくくります。<br />
+</p>
+</div>
+<div id="in-the-flow-with-tabnet" class="section level1">
+<h1>In the flow with TabNet</h1>
+<p>いつものように、必要なライブラリをすべて読み込むことから始めます。</p>
+<p>また、Torch側だけでなく、R側にもランダムなシードを設定します。</p>
+<p>モデルの解釈がタスクの一部になっている場合、ランダムな初期化の役割を調査したいと思うでしょう。</p>
+<pre class="r"><code>library(torch)
+library(tabnet)
+library(tidyverse)
+library(tidymodels)
+library(finetune) # to use tuning functions from the new finetune package
+library(vip) #to plot feature importances
+set.seed(777)
+torch_manual_seed(777)</code></pre>
+<p>次に、データセットをロードします.</p>
+<pre class="r"><code>#downloadfromhttps://archive.ics.uci.edu/ml/datasets/HIGGS
+higgs&lt;-read_csv(
+  &quot;data/phpZLgL9q.csv&quot;,
+  col_names=c(&quot;class&quot;,&quot;lepton_pT&quot;,&quot;lepton_eta&quot;,&quot;lepton_phi&quot;,&quot;missing_energy_magnitude&quot;,
+              &quot;missing_energy_phi&quot;,&quot;jet_1_pt&quot;,&quot;jet_1_eta&quot;,&quot;jet_1_phi&quot;,&quot;jet_1_b_tag&quot;,
+              &quot;jet_2_pt&quot;,&quot;jet_2_eta&quot;,&quot;jet_2_phi&quot;,&quot;jet_2_b_tag&quot;,&quot;jet_3_pt&quot;,&quot;jet_3_eta&quot;,
+              &quot;jet_3_phi&quot;,&quot;jet_3_b_tag&quot;,&quot;jet_4_pt&quot;,&quot;jet_4_eta&quot;,&quot;jet_4_phi&quot;,&quot;jet_4_b_tag&quot;,&quot;m_jj&quot;,&quot;m_jjj&quot;,&quot;m_lv&quot;,&quot;m_jlv&quot;,&quot;m_bb&quot;,&quot;m_wbb&quot;,&quot;m_wwbb&quot;),
+  skip=1,
+  col_types=&quot;fdddddddddddddddddddddddddddd&quot;
+)%&gt;%
+  drop_na()</code></pre>
+<pre><code>## Warning: 9 parsing failures.
+##   row         col expected actual                 file
+## 98050 jet_4_phi   a double      ? &#39;data/phpZLgL9q.csv&#39;
+## 98050 jet_4_b_tag a double      ? &#39;data/phpZLgL9q.csv&#39;
+## 98050 m_jj        a double      ? &#39;data/phpZLgL9q.csv&#39;
+## 98050 m_jjj       a double      ? &#39;data/phpZLgL9q.csv&#39;
+## 98050 m_lv        a double      ? &#39;data/phpZLgL9q.csv&#39;
+## ..... ........... ........ ...... ....................
+## See problems(...) for more details.</code></pre>
+<p>(注：本文中のデータは重く解凍できなかったため、以下のサイトでDLした。<a href="https://www.openml.org/d/23512" class="uri">https://www.openml.org/d/23512</a> また、naを含む行は除去した。)</p>
+<p>このデータは何ですか？高エネルギー物理学では、新しい粒子の探索は、CERNの大型ハドロン衝突型加速器などの強力な素粒子加速器で行われます。実際の実験に加えて、シミュレーションも重要な役割を果たしています。シミュレーションでは、異なる基礎となる仮説に基づいて「測定」データが生成され、その結果、互いに比較できる分布が得られます。シミュレーションされたデータの尤度が与えられれば、その仮説を推論することが目的となります。</p>
+<p>上記のデータセット（Baldi,Sadowski,andWhiteson(2014)）は、まさにそのようなシミュレーションから得られたものです。2つの異なるプロセスを仮定して、どのような特徴が測定できるかを調べています。最初のプロセスでは、2つのグルーオンが衝突し、重いヒッグス粒子が生成されます。2つ目のプロセスでは、2つのグルーオンの衝突によってトップクォークが生成され、これがバックグラウンドプロセスです。</p>
+<p>どちらの過程も、異なる中間体を経て同じ最終生成物になるので、これらを追跡しても意味がありません。そこで著者らが行ったのは、レプトン（電子と陽子）や粒子ジェットなどの崩壊生成物の運動学的特徴（具体的には運動量）をシミュレーションすることでした。さらに、領域知識を前提とした多くの高レベルの特徴を構築しました。彼らの論文では、他の機械学習手法とは対照的に、低レベルの特徴（運動量）のみを提示した場合と、高レベルの特徴のみを提示した場合とでは、ディープニューラルネットワークの性能がほぼ同じであることが示されています。</p>
+<p>確かに、これらの結果をタブネットでダブルチェックして、それぞれの特徴の重要度を見るのは面白いでしょう。しかし、データセットのサイズを考えると、無視できないほどの計算リソース（と忍耐力）が必要になります。</p>
+<p>サイズといえば、ちょっと見てみましょう。</p>
+<pre class="r"><code>higgs%&gt;%glimpse()</code></pre>
+<pre><code>## Rows: 98,049
+## Columns: 29
+## $ class                    &lt;fct&gt; 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0…
+## $ lepton_pT                &lt;dbl&gt; 0.9075421, 0.7988347, 1.3443848, 1.1050090,…
+## $ lepton_eta               &lt;dbl&gt; 0.3291473, 1.4706388, -0.8766260, 0.3213556…
+## $ lepton_phi               &lt;dbl&gt; 0.359411865, -1.635974765, 0.935912728, 1.5…
+## $ missing_energy_magnitude &lt;dbl&gt; 1.4979699, 0.4537732, 1.9920501, 0.8828076,…
+## $ missing_energy_phi       &lt;dbl&gt; -0.31300953, 0.42562917, 0.88245440, -1.205…
+## $ jet_1_pt                 &lt;dbl&gt; 1.0955306, 1.1048746, 1.7860659, 0.6814661,…
+## $ jet_1_eta                &lt;dbl&gt; -0.55752492, 1.28232229, -1.64677775, -1.07…
+## $ jet_1_phi                &lt;dbl&gt; -1.58822978, 1.38166428, -0.94238251, -0.92…
+## $ jet_1_b_tag              &lt;dbl&gt; 2.173076, 0.000000, 0.000000, 0.000000, 2.1…
+## $ jet_2_pt                 &lt;dbl&gt; 0.8125812, 0.8517372, 2.4232647, 0.8008721,…
+## $ jet_2_eta                &lt;dbl&gt; -0.21364193, 1.54065895, -0.67601579, 1.020…
+## $ jet_2_phi                &lt;dbl&gt; 1.2710146, -0.8196895, 0.7361587, 0.9714065…
+## $ jet_2_b_tag              &lt;dbl&gt; 2.214872, 2.214872, 2.214872, 2.214872, 0.0…
+## $ jet_3_pt                 &lt;dbl&gt; 0.4999940, 0.9934899, 1.2987198, 0.5967613,…
+## $ jet_3_eta                &lt;dbl&gt; -1.261431813, 0.356080115, -1.430738091, -0…
+## $ jet_3_phi                &lt;dbl&gt; 0.73215616, -0.20877755, -0.36465818, 0.631…
+## $ jet_3_b_tag              &lt;dbl&gt; 0.000000, 2.548224, 0.000000, 0.000000, 0.0…
+## $ jet_4_pt                 &lt;dbl&gt; 0.3987009, 1.2569546, 0.7453127, 0.4799989,…
+## $ jet_4_eta                &lt;dbl&gt; -1.13893008, 1.12884760, -0.67837882, -0.37…
+## $ jet_4_phi                &lt;dbl&gt; -0.0008191102, 0.9004608393, -1.3603563309,…
+## $ jet_4_b_tag              &lt;dbl&gt; 0.000000, 0.000000, 0.000000, 0.000000, 3.1…
+## $ m_jj                     &lt;dbl&gt; 0.3022199, 0.9097533, 0.9466525, 0.7558565,…
+## $ m_jjj                    &lt;dbl&gt; 0.8330482, 1.1083305, 1.0287037, 1.3610570,…
+## $ m_lv                     &lt;dbl&gt; 0.9856997, 0.9856922, 0.9986561, 0.9866097,…
+## $ m_jlv                    &lt;dbl&gt; 0.9780984, 0.9513313, 0.7282806, 0.8380846,…
+## $ m_bb                     &lt;dbl&gt; 0.7797322, 0.8032515, 0.8692002, 1.1332952,…
+## $ m_wbb                    &lt;dbl&gt; 0.9923558, 0.8659244, 1.0267365, 0.8722449,…
+## $ m_wwbb                   &lt;dbl&gt; 0.7983426, 0.7801176, 0.9579040, 0.8084865,…</code></pre>
+<p>(注：2行目以降は本文のデータと一致している様子。行数は本文データとは不一致。) 106</p>
+<p>1,100万個の“オブザベーション”(のようなもの)-多いですね!TabNet論文（ArikandPfister(2020)）の著者のように、我々はこれらのうち50万個を検証に使用します（彼らとは異なり、87万回の反復学習はできません！）。しかし、彼らとは異なり、870,000回の反復学習はできません！）。 108</p>
+<p>最初の変数であるクラスは、ヒッグス粒子が存在するかどうかによって、1か0かのどちらかになります。実験では、衝突のごく一部がヒッグス粒子のいずれかを生成するだけですが、このデータセットでは、どちらのクラスもほぼ等しく頻繁に生成されます。</p>
+<p>予測因子に関しては、最後の7つは高レベルのものです。他はすべて「測定された」ものです。</p>
+<p>データが読み込まれたので、tidymodelsのワークフローを構築する準備ができました。</p>
+<div id="データ分割" class="section level2">
+<h2>1.データ分割</h2>
+<pre class="r"><code>n&lt;-nrow(higgs)
+n_test&lt;-1000
+test_frac&lt;-n_test/n#(本文ミス？)
+split&lt;-initial_time_split(higgs,prop=1-test_frac)
+train&lt;-training(split)%&gt;%as.data.frame()
+test&lt;-testing(split)%&gt;%as.data.frame()</code></pre>
+</div>
+<div id="レシピ作成" class="section level2">
+<h2>2.レシピ作成</h2>
+<p>他のすべての機能からクラスを予測したいと考えています。</p>
+<pre class="r"><code>rec&lt;-recipe(class~.,train)</code></pre>
+</div>
+<div id="parsnipモデル作成" class="section level2">
+<h2>3.parsnipモデル作成</h2>
+<p>渡されるパラメータは，TabNet論文で報告されているもので，このデータセットで使用されているSサイズモデルのバリアントです．</p>
+<pre class="r"><code>#hyperparametersettings(apartfromepochs)aspertheTabNetpaper(TabNet-S)
+mod&lt;-tabnet(epochs=3,batch_size=4669,decision_width=24,attention_width=26,
+            num_steps=5,penalty=0.000001,virtual_batch_size=512,momentum=0.6,
+            feature_reusage=1.5,learn_rate=0.02)%&gt;%
+  set_engine(&quot;torch&quot;,verbose=TRUE)%&gt;%
+  set_mode(&quot;classification&quot;)</code></pre>
+<p>(learningrateは大きめ、batchsize小さめに変更))</p>
+<div id="appendix" class="section level3">
+<h3>Appendix</h3>
+<p>パラメーターとその内容</p>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="91%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>パラメーター</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>epochs</td>
+<td>試行回数</td>
+</tr>
+<tr class="even">
+<td>batch_size</td>
+<td>サンプル数</td>
+</tr>
+<tr class="odd">
+<td>num_steps</td>
+<td>int)Number of steps in the architecture(usually between 3 and 10)</td>
+</tr>
+<tr class="even">
+<td>decision_width|</td>
+<td>(int)決定予測層の幅。値が大きいほど、オーバーフィットのリスクがあるモデルの容量が大きくなります。値は通常8から64の範囲です。（n_d</td>
+</tr>
+<tr class="odd">
+<td>attention_width</td>
+<td>(int)各マスクに対する注目埋め込みの幅。論文によると、通常はn_d=n_aが良いとされています。(default=8)(n_a</td>
+</tr>
+<tr class="even">
+<td>feature_reusage</td>
+<td>(float)マスクにおける特徴の再利用のための係数です。1に近い値を指定すると、レイヤ間の相関が最も少ないマスク選択になります。値の範囲は1.0から2.0です。</td>
+</tr>
+<tr class="odd">
+<td>virtual_batch_size</td>
+<td>(int)「ゴーストバッチ正規化」で使用するミニバッチのサイズ(default=128)</td>
+</tr>
+<tr class="even">
+<td>momentum</td>
+<td>Momentum for batch normalization,typically ranges from 0.01 to 0.4(default=0.02)</td>
+</tr>
+<tr class="odd">
+<td>num_independent</td>
+<td>Number of independent Gated Linear Units layers at each step step.Usual values range from 1 to 5.</td>
+</tr>
+<tr class="even">
+<td>num_shared</td>
+<td>Number of shared Gated Linear Units at each step Usual values range from 1 to 5</td>
+</tr>
+<tr class="odd">
+<td>learn_rate</td>
+<td>学習率</td>
+</tr>
+<tr class="even">
+<td>penalty</td>
+<td>これは、原著論文で提案されているような余分なスパリティ損失係数である。この係数が大きければ大きいほど、特徴選択の面でモデルがより鮮明になります。問題の難易度によっては、この値を下げることで解決できるかもしれません。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="ワークフローにバンドル" class="section level2">
+<h2>4.ワークフローにバンドル</h2>
+<pre class="r"><code>wf&lt;-workflow()%&gt;%
+add_model(mod)%&gt;%
+add_recipe(rec)</code></pre>
+</div>
+<div id="モデル訓練" class="section level2">
+<h2>5.モデル訓練</h2>
+<p>これには時間がかかります。訓練が終わったら、訓練したparsnipモデルを保存します。</p>
+<pre class="r"><code>fitted_model&lt;-wf%&gt;%fit(train)</code></pre>
+<pre><code>## [Epoch 001] Loss: 3.175046</code></pre>
+<pre><code>## [Epoch 002] Loss: 1.633342</code></pre>
+<pre><code>## [Epoch 003] Loss: 1.193075</code></pre>
+<pre class="r"><code>#parsnipモデルにアクセスし，RDS形式で保存します．
+#♪あなたがこれを読んだ時には、素敵なラッパーが存在するかもしれません。
+#https://github.com/mlverse/tabnet/issues/27を参照してください。
+#fitted_model$fit$fit$fit%&gt;%saveRDS(&quot;saved_model.rds&quot;)</code></pre>
+<p>3エポック後、損失は0.609でした。(注:本データではlossは異なります。)</p>
+<p>##6.予測/精度計算</p>
+<pre class="r"><code>preds&lt;-test%&gt;%
+  bind_cols(predict(fitted_model,test))
+yardstick::accuracy(preds,class,.pred_class)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.518</code></pre>
+<p>TabNet論文で報告されている精度(0.783)には到達しませんでしたが、ほんの一部の時間しか訓練していません。</p>
+<p>ニューラルネットワークを簡単に学習する方法としては、とても良い方法だった！と思っている方のために、ハイパーパラメータのチューニングがどれだけ簡単にできるかを見てみましょう。</p>
+<p>-ハイパーパラメータのチューニングがどれだけ簡単にできるかを待ってみてください。実際、待つ必要はありません。</p>
+</div>
+</div>
+<div id="tabnet-tuning" class="section level1">
+<h1>TabNet tuning</h1>
+<p>ハイパーパラメータのチューニングのために、tidymodelsフレームワークはクロスバリデーションを利用します。かなりのサイズのデータセットでは、多少の時間と忍耐が必要です；この記事では、オブザベーションの1/1,000を使います。</p>
+<p>上記のワークフローへの変更は、モデル仕様から始まります。ほとんどの設定を固定したままにして、TabNet固有のハイパーパラメータであるdecision_width、attention_width、num_stepsを変更するとします。</p>
+<pre class="r"><code>mod&lt;-tabnet(epochs=1,batch_size=4669,decision_width=tune(),attention_width=tune(),
+            num_steps=tune(),penalty=0.000001,virtual_batch_size=512,momentum=0.6,
+            feature_reusage=1.5,learn_rate=tune())%&gt;%
+  set_engine(&quot;torch&quot;,verbose=TRUE)%&gt;%
+  set_mode(&quot;classification&quot;)</code></pre>
+<p>ワークフローの作成は以前と同じように見えます。</p>
+<pre class="r"><code>wf&lt;-workflow()%&gt;%
+  add_model(mod)%&gt;%
+  add_recipe(rec)</code></pre>
+<p>次に、興味のあるハイパーパラメータの範囲を指定して、dialsパッケージのグリッド構築関数を呼び出してグリッドを構築します。デモのためでなければ、8つ以上の選択肢を用意して、より大きなサイズをgrid_max_entropy()に渡したいと思うでしょう。</p>
+<p>(注：sizeを更に小さめに変更)</p>
+<pre class="r"><code>grid&lt;-
+  wf%&gt;%
+  parameters()%&gt;%
+  update(
+    decision_width=decision_width(range=c(20,40)),
+    attention_width=attention_width(range=c(20,40)),
+    num_steps=num_steps(range=c(4,6))
+  )%&gt;%
+  grid_max_entropy(size=4)
+grid</code></pre>
+<pre><code>## # A tibble: 4 x 4
+##      learn_rate decision_width attention_width num_steps
+##           &lt;dbl&gt;          &lt;int&gt;           &lt;int&gt;     &lt;int&gt;
+## 1 0.00000000406             28              26         6
+## 2 0.000411                  30              39         4
+## 3 0.00174                   37              25         5
+## 4 0.00000000135             20              25         5</code></pre>
+<p>空間を探索するために、新しいfinetuneパッケージのtune_race_anova()を使用し、5倍のクロスバリデーションを利用しています。</p>
+<p>(注：cvも小さめに変更)</p>
+<pre class="r"><code>ctrl&lt;-control_race(verbose_elim=TRUE)
+folds&lt;-vfold_cv(train,v=3)
+set.seed(777)
+
+# res&lt;-wf%&gt;%
+#   tune_race_anova(
+#     resamples=folds,
+#     grid=grid,
+#     control=ctrl
+#   )</code></pre>
+<p>これで、最適なハイパーパラメータの組み合わせを抽出できるようになりました。</p>
+<pre class="r"><code># res%&gt;%show_best(&quot;accuracy&quot;)%&gt;%select(-c(.estimator,.config))</code></pre>
+<p>これ以上便利なチューニングは想像に難くありません。</p>
+<div id="appendix-1" class="section level3">
+<h3>Appendix</h3>
+<p><code>finetune::control_race(verbose_elim=TRUE)</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p><code>finetune::tune_race_anova()</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>最初の数のリサンプルが評価された後、このプロセスは、反復測定ANOVAモデルを使用して最良の結果になりそうもないチューニング・パラメータの組み合わせを排除します。</p>
+<p>ここで、元のトレーニングワークフローに戻って、TabNetの解釈可能な機能を調べてみましょう。</p>
+</div>
+</div>
+<div id="tabnet-interpretability-features" class="section level1">
+<h1>TabNet interpretability features</h1>
+<p>TabNetの最も顕著な特徴は、決定木にヒントを得て、明確なステップで実行されることです。各ステップでは、元の入力特徴を再度見て、前のステップで学習した教訓に基づいて、どの特徴を考慮するかを決定します。具体的には、注意メカニズムを用いて、特徴量に適用される疎なマスクを学習する。</p>
+<p>さて、これらのマスクは「単なる」モデル重みであるため、それらを抽出して特徴の重要性についての結論を導き出すことができます。どのように進めるかによって、次のようなことができます。</p>
+<p>-マスクの重みをステップごとに集約し，結果として，全体的な変数重要度を得ることができます．</p>
+<p>-少数のテストサンプルでモデルを実行し，ステップごとに集約して，観測ごとの変数重要度を得る．</p>
+<p>-モデルをいくつかのテストサンプルで実行し、ステップごとの重み付けと同様に観測値から個々の重みを抽出する。</p>
+<p>以上をtabnetで実現する方法です。</p>
+<div id="per-featureimportances" class="section level2">
+<h2>PER-FEATUREIMPORTANCES</h2>
+<p>パート1の最後で終わらせたfitting_modelworkflowobjectの続きです。vip::vipはparsnipモデルから直接特徴量を表示することができます。</p>
+<pre class="r"><code>fit&lt;-pull_workflow_fit(fitted_model)
+vip(fit)+theme_minimal()</code></pre>
+<p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>これら2つのハイレベル機能が共に支配的で、全体の注目度の約50%を占めています。</p>
+<p>第4位にランクされた第3位のハイレベル機能とともに、これらは「重要度の高い空間」の約60%を占めています。</p>
+<div id="observation-levelfeatureimportances" class="section level4">
+<h4><strong>OBSERVATION-LEVELFEATUREIMPORTANCES</strong></h4>
+<p>特徴の重要度を抽出するために、テスト・セットの最初の100個のオブザベーションを選択します。 TabNetがどのようにスパースを強制するかにより、多くの特徴が利用されていないことがわかります。</p>
+<pre class="r"><code>ex_fit&lt;-tabnet_explain(fit$fit,test[1:100,])
+ex_fit$M_explain%&gt;%
+  mutate(observation=row_number())%&gt;%
+  pivot_longer(-observation,names_to=&quot;variable&quot;,values_to=&quot;m_agg&quot;)%&gt;%
+  ggplot(aes(x=observation,y=variable,fill=m_agg))+
+  geom_tile()+
+  theme_minimal()+
+  scale_fill_viridis_c()</code></pre>
+<p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="per-stepobservation-levelfeatureimportances" class="section level4">
+<h4><strong>PER-STEP,OBSERVATION-LEVELFEATUREIMPORTANCES</strong></h4>
+<p>最後に、同じオブザベーションの選択で、再びマスクを検査しますが、今回は決定ステップごとに検査します。</p>
+<pre class="r"><code>ex_fit$masks%&gt;%
+  imap_dfr(~mutate(
+    .x,
+    step=sprintf(&quot;Step%d&quot;,.y),
+    observation=row_number()
+  ))%&gt;%
+  pivot_longer(-c(observation,step),names_to=&quot;variable&quot;,values_to=&quot;m_agg&quot;)%&gt;%
+  ggplot(aes(x=observation,y=variable,fill=m_agg))+
+  geom_tile()+
+  theme_minimal()+
+  theme(axis.text=element_text(size=5))+
+  scale_fill_viridis_c()+
+  facet_wrap(~step)</code></pre>
+<p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>これはいいですね。TabNetがさまざまな時期にさまざまな機能を利用していることがよくわかります。 では、これをどう活用すればいいのでしょうか？それは人それぞれです。このトピックの社会的な重要性（解釈可能性、説明可能性などと呼んでいます）を考えると、この記事の最後に簡単な議論をしておきましょう。</p>
+<p>(これ以降は翻訳から除外)</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Controlaspectsofthegridsearchracingprocess 296<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>データの1つまたは複数のリサンプルにわたってモデルまたはレシピに対応する事前定義されたチューニングパラメータのセットのパフォーマンスメトリクス（例えば、精度またはRMSE）のセットを計算します。 300<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
