@@ -5,7 +5,7 @@ title: "Tabnet_HIGGS"
 # Attention
 
 Rでtabnetを実装している記事の日本語訳と写経です。 日本語訳はdeeplぶっ込み&コピペ。()とappendixは私の補足。\
-`Keydana(2021,Feb.11).RStudioAIBlog:torch,tidymodels,and high-energy physics.Retrieved from https://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/`
+`Keydana(2021,Feb.11).RStudio AI Blog:torch,tidymodels,and high-energy physics.Retrieved from https://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/`
 
 # torch,tidymodels,and high-energy physics
 
@@ -311,7 +311,7 @@ vip(fit)+theme_minimal()
 
 第4位にランクされた第3位のハイレベル機能とともに、これらは「重要度の高い空間」の約60%を占めています。
 
-#### **OBSERVATION-LEVELFEATUREIMPORTANCES**
+#### **OBSERVATION-LEVEL FEATURE IMPORTANCES**
 
 特徴の重要度を抽出するために、テスト・セットの最初の100個のオブザベーションを選択します。 TabNetがどのようにスパースを強制するかにより、多くの特徴が利用されていないことがわかります。
 
@@ -326,7 +326,7 @@ ex_fit$M_explain%>%
   scale_fill_viridis_c()
 ```
 
-#### **PER-STEP,OBSERVATION-LEVELFEATUREIMPORTANCES**
+#### **PER-STEP,OBSERVATION-LEVEL FEATURE IMPORTANCES**
 
 最後に、同じオブザベーションの選択で、再びマスクを検査しますが、今回は決定ステップごとに検査します。
 
