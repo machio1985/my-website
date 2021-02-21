@@ -8,3 +8,8 @@ navbar:
       href: about.html
     - text: "Tabnet_HIGGS"
       href: Tabnet_HIGGS.html
+
+output:
+  html_document:
+    css: site_style.css
+output_dir: "docs"
