@@ -1,19 +1,19 @@
 ---
-title: "torch,tidymodels,and high-energy physics"
+title: "Tabnet_HIGGS"
 ---
 
 # Attention
 
 Rでtabnetを実装している記事の日本語訳と写経です。 日本語訳はdeeplぶっ込み&コピペ。()とappendixは私の補足。\
-`Keydana(2021,Feb.11).RStudioAIBlog:torch,tidymodels,andhigh-energyphysics.Retrievedfromhttps://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/`
+`Keydana(2021,Feb.11).RStudioAIBlog:torch,tidymodels,and high-energy physics.Retrieved from https://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/`
 
 # torch,tidymodels,and high-energy physics
 
 今日は「TabNet」のTorch実装である「Tabnet」を紹介します。\
-tidymodelsフレームワークと完全に統合された"AttentiveInterpretableTabularLearning"のTorch実装であるtabnetを紹介します。\
+tidymodelsフレームワークと完全に統合された"Attentive Interpretable Tabular Learning"のTorch実装であるtabnetを紹介します。\
 tidymodelsのおかげで、ハイパーパラメータのチューニング（ディープラーニングでは面倒なことが多い）が便利で楽しいものになりました。
 
-で、何がクリックベイト（高エネルギー物理学）なのか？ただのクリックベイトではありません。TabNetを紹介するために、UCIMachineLearningRepositoryで公開されているHiggsデータセット（Baldi,Sadowski,andWhiteson(2014)）を使います。あなたのことは知らないが、私はいつも、物事を学ぶモチベーションを高めてくれるデータセットを使うのが好きだ。しかし、その前に、この記事の主役たちと知り合いになりましょう!Baldi,P.,P.Sadowski,andD.Whiteson.2014."ディープラーニングを用いた高エネルギー物理学におけるエキゾチック粒子の探索"ネイチャー・コミュ
+で、何がクリックベイト（高エネルギー物理学）なのか？ただのクリックベイトではありません。TabNetを紹介するために、UCI Machine Learning Repositoryで公開されているHiggsデータセット（Baldi,Sadowski,andWhiteson(2014)）を使います。あなたのことは知らないが、私はいつも、物事を学ぶモチベーションを高めてくれるデータセットを使うのが好きだ。しかし、その前に、この記事の主役たちと知り合いになりましょう!Baldi,P.,P.Sadowski,andD.Whiteson.2014."ディープラーニングを用いた高エネルギー物理学におけるエキゾチック粒子の探索"ネイチャー・コミュ
 
 # TabNet
 
@@ -78,7 +78,7 @@ higgs<-read_csv(
 
 このデータは何ですか？高エネルギー物理学では、新しい粒子の探索は、CERNの大型ハドロン衝突型加速器などの強力な素粒子加速器で行われます。実際の実験に加えて、シミュレーションも重要な役割を果たしています。シミュレーションでは、異なる基礎となる仮説に基づいて「測定」データが生成され、その結果、互いに比較できる分布が得られます。シミュレーションされたデータの尤度が与えられれば、その仮説を推論することが目的となります。
 
-上記のデータセット（Baldi,Sadowski,andWhiteson(2014)）は、まさにそのようなシミュレーションから得られたものです。2つの異なるプロセスを仮定して、どのような特徴が測定できるかを調べています。最初のプロセスでは、2つのグルーオンが衝突し、重いヒッグス粒子が生成されます。2つ目のプロセスでは、2つのグルーオンの衝突によってトップクォークが生成され、これがバックグラウンドプロセスです。
+上記のデータセット（Baldi,Sadowski,and Whiteson(2014)）は、まさにそのようなシミュレーションから得られたものです。2つの異なるプロセスを仮定して、どのような特徴が測定できるかを調べています。最初のプロセスでは、2つのグルーオンが衝突し、重いヒッグス粒子が生成されます。2つ目のプロセスでは、2つのグルーオンの衝突によってトップクォークが生成され、これがバックグラウンドプロセスです。
 
 どちらの過程も、異なる中間体を経て同じ最終生成物になるので、これらを追跡しても意味がありません。そこで著者らが行ったのは、レプトン（電子と陽子）や粒子ジェットなどの崩壊生成物の運動学的特徴（具体的には運動量）をシミュレーションすることでした。さらに、領域知識を前提とした多くの高レベルの特徴を構築しました。彼らの論文では、他の機械学習手法とは対照的に、低レベルの特徴（運動量）のみを提示した場合と、高レベルの特徴のみを提示した場合とでは、ディープニューラルネットワークの性能がほぼ同じであることが示されています。
 
@@ -124,7 +124,7 @@ rec<-recipe(class~.,train)
 渡されるパラメータは，TabNet論文で報告されているもので，このデータセットで使用されているSサイズモデルのバリアントです．
 
 ```{r}
-#hyperparametersettings(apartfromepochs)aspertheTabNetpaper(TabNet-S)
+#hyper parameter settings(apart from epochs)as per the TabNet paper(TabNet-S)
 mod<-tabnet(epochs=3,batch_size=4669,decision_width=24,attention_width=26,
             num_steps=5,penalty=0.000001,virtual_batch_size=512,momentum=0.6,
             feature_reusage=1.5,learn_rate=0.02)%>%
@@ -132,7 +132,7 @@ mod<-tabnet(epochs=3,batch_size=4669,decision_width=24,attention_width=26,
   set_mode("classification")
 ```
 
-(learningrateは大きめ、batchsize小さめに変更))
+(learning rateは大きめ、batchsize小さめに変更))
 
 ### Appendix
 
@@ -274,7 +274,7 @@ set.seed(777)
 
 `finetune::control_race(verbose_elim=TRUE)`[^1]
 
-[^1]: Controlaspectsofthegridsearchracingprocess 296
+[^1]: Control aspects of the grid search racing process
 
 `finetune::tune_race_anova()`[^2]
 
@@ -298,9 +298,9 @@ TabNetの最も顕著な特徴は、決定木にヒントを得て、明確な�
 
 以上をtabnetで実現する方法です。
 
-## PER-FEATUREIMPORTANCES
+## PER-FEATURE IMPORTANCES
 
-パート1の最後で終わらせたfitting_modelworkflowobjectの続きです。vip::vipはparsnipモデルから直接特徴量を表示することができます。
+パート1の最後で終わらせたfitting_model workflow objectの続きです。vip::vipはparsnipモデルから直接特徴量を表示することができます。
 
 ```{r}
 fit<-pull_workflow_fit(fitted_model)

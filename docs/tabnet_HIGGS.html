@@ -11,7 +11,7 @@
 
 
 
-<title>torch,tidymodels,and high-energy physics</title>
+<title>Tabnet_HIGGS</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -263,7 +263,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">torch,tidymodels,and high-energy physics</h1>
+<h1 class="title toc-ignore">Tabnet_HIGGS</h1>
 
 </div>
 
@@ -271,14 +271,14 @@ $(document).ready(function () {
 <div id="attention" class="section level1">
 <h1>Attention</h1>
 <p>Rでtabnetを実装している記事の日本語訳と写経です。 日本語訳はdeeplぶっ込み&amp;コピペ。()とappendixは私の補足。<br />
-<code>Keydana(2021,Feb.11).RStudioAIBlog:torch,tidymodels,andhigh-energyphysics.Retrievedfromhttps://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/</code></p>
+<code>Keydana(2021,Feb.11).RStudioAIBlog:torch,tidymodels,and high-energy physics.Retrieved from https://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/</code></p>
 </div>
 <div id="torchtidymodelsand-high-energy-physics" class="section level1">
 <h1>torch,tidymodels,and high-energy physics</h1>
 <p>今日は「TabNet」のTorch実装である「Tabnet」を紹介します。<br />
-tidymodelsフレームワークと完全に統合された“AttentiveInterpretableTabularLearning”のTorch実装であるtabnetを紹介します。<br />
+tidymodelsフレームワークと完全に統合された“Attentive Interpretable Tabular Learning”のTorch実装であるtabnetを紹介します。<br />
 tidymodelsのおかげで、ハイパーパラメータのチューニング（ディープラーニングでは面倒なことが多い）が便利で楽しいものになりました。</p>
-<p>で、何がクリックベイト（高エネルギー物理学）なのか？ただのクリックベイトではありません。TabNetを紹介するために、UCIMachineLearningRepositoryで公開されているHiggsデータセット（Baldi,Sadowski,andWhiteson(2014)）を使います。あなたのことは知らないが、私はいつも、物事を学ぶモチベーションを高めてくれるデータセットを使うのが好きだ。しかし、その前に、この記事の主役たちと知り合いになりましょう!Baldi,P.,P.Sadowski,andD.Whiteson.2014.“ディープラーニングを用いた高エネルギー物理学におけるエキゾチック粒子の探索”ネイチャー・コミュ</p>
+<p>で、何がクリックベイト（高エネルギー物理学）なのか？ただのクリックベイトではありません。TabNetを紹介するために、UCI Machine Learning Repositoryで公開されているHiggsデータセット（Baldi,Sadowski,andWhiteson(2014)）を使います。あなたのことは知らないが、私はいつも、物事を学ぶモチベーションを高めてくれるデータセットを使うのが好きだ。しかし、その前に、この記事の主役たちと知り合いになりましょう!Baldi,P.,P.Sadowski,andD.Whiteson.2014.“ディープラーニングを用いた高エネルギー物理学におけるエキゾチック粒子の探索”ネイチャー・コミュ</p>
 </div>
 <div id="tabnet" class="section level1">
 <h1>TabNet</h1>
@@ -337,7 +337,7 @@ higgs&lt;-read_csv(
 ## See problems(...) for more details.</code></pre>
 <p>(注：本文中のデータは重く解凍できなかったため、以下のサイトでDLした。<a href="https://www.openml.org/d/23512" class="uri">https://www.openml.org/d/23512</a> また、naを含む行は除去した。)</p>
 <p>このデータは何ですか？高エネルギー物理学では、新しい粒子の探索は、CERNの大型ハドロン衝突型加速器などの強力な素粒子加速器で行われます。実際の実験に加えて、シミュレーションも重要な役割を果たしています。シミュレーションでは、異なる基礎となる仮説に基づいて「測定」データが生成され、その結果、互いに比較できる分布が得られます。シミュレーションされたデータの尤度が与えられれば、その仮説を推論することが目的となります。</p>
-<p>上記のデータセット（Baldi,Sadowski,andWhiteson(2014)）は、まさにそのようなシミュレーションから得られたものです。2つの異なるプロセスを仮定して、どのような特徴が測定できるかを調べています。最初のプロセスでは、2つのグルーオンが衝突し、重いヒッグス粒子が生成されます。2つ目のプロセスでは、2つのグルーオンの衝突によってトップクォークが生成され、これがバックグラウンドプロセスです。</p>
+<p>上記のデータセット（Baldi,Sadowski,and Whiteson(2014)）は、まさにそのようなシミュレーションから得られたものです。2つの異なるプロセスを仮定して、どのような特徴が測定できるかを調べています。最初のプロセスでは、2つのグルーオンが衝突し、重いヒッグス粒子が生成されます。2つ目のプロセスでは、2つのグルーオンの衝突によってトップクォークが生成され、これがバックグラウンドプロセスです。</p>
 <p>どちらの過程も、異なる中間体を経て同じ最終生成物になるので、これらを追跡しても意味がありません。そこで著者らが行ったのは、レプトン（電子と陽子）や粒子ジェットなどの崩壊生成物の運動学的特徴（具体的には運動量）をシミュレーションすることでした。さらに、領域知識を前提とした多くの高レベルの特徴を構築しました。彼らの論文では、他の機械学習手法とは対照的に、低レベルの特徴（運動量）のみを提示した場合と、高レベルの特徴のみを提示した場合とでは、ディープニューラルネットワークの性能がほぼ同じであることが示されています。</p>
 <p>確かに、これらの結果をタブネットでダブルチェックして、それぞれの特徴の重要度を見るのは面白いでしょう。しかし、データセットのサイズを考えると、無視できないほどの計算リソース（と忍耐力）が必要になります。</p>
 <p>サイズといえば、ちょっと見てみましょう。</p>
@@ -395,13 +395,13 @@ test&lt;-testing(split)%&gt;%as.data.frame()</code></pre>
 <div id="parsnipモデル作成" class="section level2">
 <h2>3.parsnipモデル作成</h2>
 <p>渡されるパラメータは，TabNet論文で報告されているもので，このデータセットで使用されているSサイズモデルのバリアントです．</p>
-<pre class="r"><code>#hyperparametersettings(apartfromepochs)aspertheTabNetpaper(TabNet-S)
+<pre class="r"><code>#hyper parameter settings(apart from epochs)as per the TabNet paper(TabNet-S)
 mod&lt;-tabnet(epochs=3,batch_size=4669,decision_width=24,attention_width=26,
             num_steps=5,penalty=0.000001,virtual_batch_size=512,momentum=0.6,
             feature_reusage=1.5,learn_rate=0.02)%&gt;%
   set_engine(&quot;torch&quot;,verbose=TRUE)%&gt;%
   set_mode(&quot;classification&quot;)</code></pre>
-<p>(learningrateは大きめ、batchsize小さめに変更))</p>
+<p>(learning rateは大きめ、batchsize小さめに変更))</p>
 <div id="appendix" class="section level3">
 <h3>Appendix</h3>
 <p>パラメーターとその内容</p>
@@ -563,9 +563,9 @@ set.seed(777)
 <p>-少数のテストサンプルでモデルを実行し，ステップごとに集約して，観測ごとの変数重要度を得る．</p>
 <p>-モデルをいくつかのテストサンプルで実行し、ステップごとの重み付けと同様に観測値から個々の重みを抽出する。</p>
 <p>以上をtabnetで実現する方法です。</p>
-<div id="per-featureimportances" class="section level2">
-<h2>PER-FEATUREIMPORTANCES</h2>
-<p>パート1の最後で終わらせたfitting_modelworkflowobjectの続きです。vip::vipはparsnipモデルから直接特徴量を表示することができます。</p>
+<div id="per-feature-importances" class="section level2">
+<h2>PER-FEATURE IMPORTANCES</h2>
+<p>パート1の最後で終わらせたfitting_model workflow objectの続きです。vip::vipはparsnipモデルから直接特徴量を表示することができます。</p>
 <pre class="r"><code>fit&lt;-pull_workflow_fit(fitted_model)
 vip(fit)+theme_minimal()</code></pre>
 <p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
@@ -609,7 +609,7 @@ ex_fit$M_explain%&gt;%
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Controlaspectsofthegridsearchracingprocess 296<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Control aspects of the grid search racing process<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>データの1つまたは複数のリサンプルにわたってモデルまたはレシピに対応する事前定義されたチューニングパラメータのセットのパフォーマンスメトリクス（例えば、精度またはRMSE）のセットを計算します。 300<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
