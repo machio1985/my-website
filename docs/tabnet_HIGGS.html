@@ -271,7 +271,7 @@ $(document).ready(function () {
 <div id="attention" class="section level1">
 <h1>Attention</h1>
 <p>Rでtabnetを実装している記事の日本語訳と写経です。 日本語訳はdeeplぶっ込み&amp;コピペ。()とappendixは私の補足。<br />
-<code>Keydana(2021,Feb.11).RStudioAIBlog:torch,tidymodels,and high-energy physics.Retrieved from https://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/</code></p>
+<code>Keydana(2021,Feb.11).RStudio AI Blog:torch,tidymodels,and high-energy physics.Retrieved from https://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/</code></p>
 </div>
 <div id="torchtidymodelsand-high-energy-physics" class="section level1">
 <h1>torch,tidymodels,and high-energy physics</h1>
@@ -571,8 +571,8 @@ vip(fit)+theme_minimal()</code></pre>
 <p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>これら2つのハイレベル機能が共に支配的で、全体の注目度の約50%を占めています。</p>
 <p>第4位にランクされた第3位のハイレベル機能とともに、これらは「重要度の高い空間」の約60%を占めています。</p>
-<div id="observation-levelfeatureimportances" class="section level4">
-<h4><strong>OBSERVATION-LEVELFEATUREIMPORTANCES</strong></h4>
+<div id="observation-level-feature-importances" class="section level4">
+<h4><strong>OBSERVATION-LEVEL FEATURE IMPORTANCES</strong></h4>
 <p>特徴の重要度を抽出するために、テスト・セットの最初の100個のオブザベーションを選択します。 TabNetがどのようにスパースを強制するかにより、多くの特徴が利用されていないことがわかります。</p>
 <pre class="r"><code>ex_fit&lt;-tabnet_explain(fit$fit,test[1:100,])
 ex_fit$M_explain%&gt;%
@@ -584,8 +584,8 @@ ex_fit$M_explain%&gt;%
   scale_fill_viridis_c()</code></pre>
 <p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
-<div id="per-stepobservation-levelfeatureimportances" class="section level4">
-<h4><strong>PER-STEP,OBSERVATION-LEVELFEATUREIMPORTANCES</strong></h4>
+<div id="per-stepobservation-level-feature-importances" class="section level4">
+<h4><strong>PER-STEP,OBSERVATION-LEVEL FEATURE IMPORTANCES</strong></h4>
 <p>最後に、同じオブザベーションの選択で、再びマスクを検査しますが、今回は決定ステップごとに検査します。</p>
 <pre class="r"><code>ex_fit$masks%&gt;%
   imap_dfr(~mutate(
