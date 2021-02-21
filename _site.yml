@@ -7,7 +7,7 @@ navbar:
     - text: "About"
       href: about.html
     - text: "Tabnet_HIGGS"
-      href: Tabnet_HIGGS.html
+      href: tabnet_HIGGS.html
 
 output:
   html_document:
