@@ -1,13 +1,17 @@
 ---
-title: "Tabnet_HIGGS"
+subtitle: "Tabnet_HIGGS"
 ---
 
-# Attention
+# torch,tidymodels,and high-energy physics
+
+## Attention
 
 Rでtabnetを実装している記事の日本語訳と写経です。 日本語訳はdeeplぶっ込み&コピペ。()とappendixは私の補足。\
-`Keydana(2021,Feb.11).RStudio AI Blog:torch,tidymodels,and high-energy physics.Retrieved from https://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/`
+`Keydana(2021,Feb.11).RStudio AI Blog:torch,tidymodels,and high-energy physics.`
 
-# torch,tidymodels,and high-energy physics
+`Retrieved from https://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/`
+
+# Contents
 
 今日は「TabNet」のTorch実装である「Tabnet」を紹介します。\
 tidymodelsフレームワークと完全に統合された"Attentive Interpretable Tabular Learning"のTorch実装であるtabnetを紹介します。\

@@ -1,259 +1,359 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="generator" content="pandoc" />
 
-    
-    
-    <title>Tabnet_HIGGS</title>
+<html>
 
-        <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
-        <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-        <script src="site_libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-        <script src="site_libs/navigation-1.1/tabsets.js"></script>
-        <link href="site_libs/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
-        <script src="site_libs/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
-        <link href="site_libs/downcute-0.1/downcute.css" rel="stylesheet" />
-        <link href="site_libs/downcute-0.1/downcute_fonts_embed.css" rel="stylesheet" />
-        <script src="site_libs/downcute-0.1/downcute.js"></script>
-        <script src="site_libs/prism-1.22/prism.js"></script>
-    
-    
-        <style type="text/css">code{white-space: pre;}</style>
-    <style type="text/css">
-      pre > code.sourceCode { white-space: pre; position: relative; }
-      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-      pre > code.sourceCode > span:empty { height: 1.2em; }
-      code.sourceCode > span { color: inherit; text-decoration: inherit; }
-      div.sourceCode { margin: 1em 0; }
-      pre.sourceCode { margin: 0; }
-      @media screen {
-      div.sourceCode { overflow: auto; }
-      }
-      @media print {
-      pre > code.sourceCode { white-space: pre-wrap; }
-      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-      }
-      pre.numberSource code
-        { counter-reset: source-line 0; }
-      pre.numberSource code > span
-        { position: relative; left: -4em; counter-increment: source-line; }
-      pre.numberSource code > span > a:first-child::before
-        { content: counter(source-line);
-          position: relative; left: -1em; text-align: right; vertical-align: baseline;
-          border: none; display: inline-block;
-          -webkit-touch-callout: none; -webkit-user-select: none;
-          -khtml-user-select: none; -moz-user-select: none;
-          -ms-user-select: none; user-select: none;
-          padding: 0 4px; width: 4em;
-          color: #aaaaaa;
-        }
-      pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-      div.sourceCode
-        {   }
-      @media screen {
-      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-      }
-      code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-      code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-      code span.at { color: #7d9029; } /* Attribute */
-      code span.bn { color: #40a070; } /* BaseN */
-      code span.bu { } /* BuiltIn */
-      code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-      code span.ch { color: #4070a0; } /* Char */
-      code span.cn { color: #880000; } /* Constant */
-      code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-      code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-      code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-      code span.dt { color: #902000; } /* DataType */
-      code span.dv { color: #40a070; } /* DecVal */
-      code span.er { color: #ff0000; font-weight: bold; } /* Error */
-      code span.ex { } /* Extension */
-      code span.fl { color: #40a070; } /* Float */
-      code span.fu { color: #06287e; } /* Function */
-      code span.im { } /* Import */
-      code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-      code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-      code span.op { color: #666666; } /* Operator */
-      code span.ot { color: #007020; } /* Other */
-      code span.pp { color: #bc7a00; } /* Preprocessor */
-      code span.sc { color: #4070a0; } /* SpecialChar */
-      code span.ss { color: #bb6688; } /* SpecialString */
-      code span.st { color: #4070a0; } /* String */
-      code span.va { color: #19177c; } /* Variable */
-      code span.vs { color: #4070a0; } /* VerbatimString */
-      code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>tabnet_HIGGS.utf8</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
     </style>
-    
-    
-    <!-- tabsets -->
-    <script>
-      $(document).ready(function () {
-	  window.buildTabsets("toc");
-      });
-      $(document).ready(function () {
-	  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-	      $(this).parent().toggleClass('nav-tabs-open')
-	  });
-      });
-    </script>
 
-    <!-- code folding -->
-    
-    <!-- code download -->
-    
-    <!-- tabsets dropdown -->
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
 
-    <style type="text/css">
-      .tabset-dropdown > .nav-tabs {
-	  display: inline-table;
-	  max-height: 500px;
-	  min-height: 44px;
-	  overflow-y: auto;
-	  background: white;
-	  border: 1px solid #ddd;
-	  border-radius: 4px;
-      }
-      
-      .tabset-dropdown > .nav-tabs > li.active:before {
-	  content: "";
-	  font-family: 'Glyphicons Halflings';
-	  display: inline-block;
-	  padding: 10px;
-	  border-right: 1px solid #ddd;
-      }
-      
-      .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-	  content: "&#xe258;";
-	  border: none;
-      }
-      
-      .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-	  content: "";
-	  font-family: 'Glyphicons Halflings';
-	  display: inline-block;
-	  padding: 10px;
-	  border-right: 1px solid #ddd;
-      }
-      
-      .tabset-dropdown > .nav-tabs > li.active {
-	  display: block;
-      }
 
-      .tabset-dropdown > .nav-tabs > li.active a {
-  	  padding: 0 15px !important;
-      }
 
-      .tabset-dropdown > .nav-tabs > li > a,
-      .tabset-dropdown > .nav-tabs > li > a:focus,
-      .tabset-dropdown > .nav-tabs > li > a:hover {
-	  border: none;
-	  display: inline-block;
-	  border-radius: 4px;
-	  background-color: transparent;
-      }
-      
-      .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-	  display: block;
-	  float: none;
-      }
-      
-      .tabset-dropdown > .nav-tabs > li {
-	  display: none;
-	  margin-left: 0 !important;
-      }
-    </style>
-    
+
+
+<link rel="stylesheet" href="site_style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
 </head>
 
-<body class="preload">
+<body>
 
-   	
-               <!-- downcute start -->   
-   <div id="docute" class="Root">
-     <div class="Page layout-narrow">
-      <div class="Wrap">
-        <div class="Sidebar">
-          <div class="SidebarItems" id="toc">
-            <ul>
-            <li><a href="#attention">Attention</a></li>
-            <li><a href="#torchtidymodelsand-high-energy-physics">torch,tidymodels,and high-energy physics</a></li>
-            <li><a href="#tabnet">TabNet</a></li>
-            <li><a href="#tidymodels">tidymodels</a></li>
-            <li><a href="#using-tabnet-with-tidymodels">Using tabnet with tidymodels</a></li>
-            <li><a href="#in-the-flow-with-tabnet">In the flow with TabNet</a>
-            <ul>
-            <li><a href="#データ分割">1.データ分割</a></li>
-            <li><a href="#レシピ作成">2.レシピ作成</a></li>
-            <li><a href="#parsnipモデル作成">3.parsnipモデル作成</a></li>
-            <li><a href="#ワークフローにバンドル">4.ワークフローにバンドル</a></li>
-            <li><a href="#モデル訓練">5.モデル訓練</a></li>
-            </ul></li>
-            <li><a href="#tabnet-tuning">TabNet tuning</a></li>
-            <li><a href="#tabnet-interpretability-features">TabNet interpretability features</a>
-            <ul>
-            <li><a href="#per-feature-importances">PER-FEATURE IMPORTANCES</a></li>
-            </ul></li>
-            </ul>
-          </div>
-          <div data-position="sidebar:post-end" class="InjectedComponents"><div class="dark-theme-toggler"><div class="toggle"><div class="toggle-track"><div class="toggle-track-check"><img  src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16"></div> <div class="toggle-track-x"><img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16"></div></div> <div class="toggle-thumb"></div></div> <input type="checkbox" aria-label="Switch between Dark and Default theme" class="toggler-screen-reader-only"></div></div>
-        </div>
-        <div class="Main">
-          <div class="Content" id="content"> 
-   
-   
-      
-      <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">My Website</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li>
-        <a href="index.html">Home</a>
-      </li>
-      <li>
-        <a href="about.html">About</a>
-      </li>
-      <li>
-        <a href="tabnet_HIGGS.html">tabnet_HIGGS</a>
-      </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container -->
-      </div><!--/.navbar -->
-        
-      <h1 class="title">Tabnet_HIGGS</h1>
-      
-      <p class="authors">
-              
 
-   
-      
-   
-<!-- Don't indent these lines or it will mess pre blocks indentation --> 
-<div class="page-content has-page-title">
-<div id="attention" class="section level1">
-<h1>Attention</h1>
-<p>Rでtabnetを実装している記事の日本語訳と写経です。 日本語訳はdeeplぶっ込み&amp;コピペ。()とappendixは私の補足。<br />
-<code>Keydana(2021,Feb.11).RStudio AI Blog:torch,tidymodels,and high-energy physics.Retrieved from https://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/</code></p>
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
 </div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="tabnet_HIGGS.html">tabnet_HIGGS</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
 <div id="torchtidymodelsand-high-energy-physics" class="section level1">
 <h1>torch,tidymodels,and high-energy physics</h1>
+<div id="attention" class="section level2">
+<h2>Attention</h2>
+<p>Rでtabnetを実装している記事の日本語訳と写経です。 日本語訳はdeeplぶっ込み&amp;コピペ。()とappendixは私の補足。<br />
+<code>Keydana(2021,Feb.11).RStudio AI Blog:torch,tidymodels,and high-energy physics.</code></p>
+<p><code>Retrieved from https://blogs.rstudio.com/tensorflow/posts/2021-02-11-tabnet/</code></p>
+</div>
+</div>
+<div id="contents" class="section level1">
+<h1>Contents</h1>
 <p>今日は「TabNet」のTorch実装である「Tabnet」を紹介します。<br />
 tidymodelsフレームワークと完全に統合された“Attentive Interpretable Tabular Learning”のTorch実装であるtabnetを紹介します。<br />
 tidymodelsのおかげで、ハイパーパラメータのチューニング（ディープラーニングでは面倒なことが多い）が便利で楽しいものになりました。</p>
@@ -285,26 +385,26 @@ tidymodelsのおかげで、ハイパーパラメータのチューニング（�
 <p>いつものように、必要なライブラリをすべて読み込むことから始めます。</p>
 <p>また、Torch側だけでなく、R側にもランダムなシードを設定します。</p>
 <p>モデルの解釈がタスクの一部になっている場合、ランダムな初期化の役割を調査したいと思うでしょう。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(torch)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tabnet)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(finetune) <span class="co"># to use tuning functions from the new finetune package</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip) <span class="co">#to plot feature importances</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">777</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">torch_manual_seed</span>(<span class="dv">777</span>)</span></code></pre></div>
+<pre class="r"><code>library(torch)
+library(tabnet)
+library(tidyverse)
+library(tidymodels)
+library(finetune) # to use tuning functions from the new finetune package
+library(vip) #to plot feature importances
+set.seed(777)
+torch_manual_seed(777)</code></pre>
 <p>次に、データセットをロードします.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#downloadfromhttps://archive.ics.uci.edu/ml/datasets/HIGGS</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>higgs<span class="ot">&lt;-</span><span class="fu">read_csv</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;data/phpZLgL9q.csv&quot;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="fu">c</span>(<span class="st">&quot;class&quot;</span>,<span class="st">&quot;lepton_pT&quot;</span>,<span class="st">&quot;lepton_eta&quot;</span>,<span class="st">&quot;lepton_phi&quot;</span>,<span class="st">&quot;missing_energy_magnitude&quot;</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;missing_energy_phi&quot;</span>,<span class="st">&quot;jet_1_pt&quot;</span>,<span class="st">&quot;jet_1_eta&quot;</span>,<span class="st">&quot;jet_1_phi&quot;</span>,<span class="st">&quot;jet_1_b_tag&quot;</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;jet_2_pt&quot;</span>,<span class="st">&quot;jet_2_eta&quot;</span>,<span class="st">&quot;jet_2_phi&quot;</span>,<span class="st">&quot;jet_2_b_tag&quot;</span>,<span class="st">&quot;jet_3_pt&quot;</span>,<span class="st">&quot;jet_3_eta&quot;</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;jet_3_phi&quot;</span>,<span class="st">&quot;jet_3_b_tag&quot;</span>,<span class="st">&quot;jet_4_pt&quot;</span>,<span class="st">&quot;jet_4_eta&quot;</span>,<span class="st">&quot;jet_4_phi&quot;</span>,<span class="st">&quot;jet_4_b_tag&quot;</span>,<span class="st">&quot;m_jj&quot;</span>,<span class="st">&quot;m_jjj&quot;</span>,<span class="st">&quot;m_lv&quot;</span>,<span class="st">&quot;m_jlv&quot;</span>,<span class="st">&quot;m_bb&quot;</span>,<span class="st">&quot;m_wbb&quot;</span>,<span class="st">&quot;m_wwbb&quot;</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip=</span><span class="dv">1</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types=</span><span class="st">&quot;fdddddddddddddddddddddddddddd&quot;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)<span class="sc">%&gt;%</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code></pre></div>
+<pre class="r"><code>#downloadfromhttps://archive.ics.uci.edu/ml/datasets/HIGGS
+higgs&lt;-read_csv(
+  &quot;data/phpZLgL9q.csv&quot;,
+  col_names=c(&quot;class&quot;,&quot;lepton_pT&quot;,&quot;lepton_eta&quot;,&quot;lepton_phi&quot;,&quot;missing_energy_magnitude&quot;,
+              &quot;missing_energy_phi&quot;,&quot;jet_1_pt&quot;,&quot;jet_1_eta&quot;,&quot;jet_1_phi&quot;,&quot;jet_1_b_tag&quot;,
+              &quot;jet_2_pt&quot;,&quot;jet_2_eta&quot;,&quot;jet_2_phi&quot;,&quot;jet_2_b_tag&quot;,&quot;jet_3_pt&quot;,&quot;jet_3_eta&quot;,
+              &quot;jet_3_phi&quot;,&quot;jet_3_b_tag&quot;,&quot;jet_4_pt&quot;,&quot;jet_4_eta&quot;,&quot;jet_4_phi&quot;,&quot;jet_4_b_tag&quot;,&quot;m_jj&quot;,&quot;m_jjj&quot;,&quot;m_lv&quot;,&quot;m_jlv&quot;,&quot;m_bb&quot;,&quot;m_wbb&quot;,&quot;m_wwbb&quot;),
+  skip=1,
+  col_types=&quot;fdddddddddddddddddddddddddddd&quot;
+)%&gt;%
+  drop_na()</code></pre>
 <pre><code>## Warning: 9 parsing failures.
 ##   row         col expected actual                 file
 ## 98050 jet_4_phi   a double      ? &#39;data/phpZLgL9q.csv&#39;
@@ -320,7 +420,7 @@ tidymodelsのおかげで、ハイパーパラメータのチューニング（�
 <p>どちらの過程も、異なる中間体を経て同じ最終生成物になるので、これらを追跡しても意味がありません。そこで著者らが行ったのは、レプトン（電子と陽子）や粒子ジェットなどの崩壊生成物の運動学的特徴（具体的には運動量）をシミュレーションすることでした。さらに、領域知識を前提とした多くの高レベルの特徴を構築しました。彼らの論文では、他の機械学習手法とは対照的に、低レベルの特徴（運動量）のみを提示した場合と、高レベルの特徴のみを提示した場合とでは、ディープニューラルネットワークの性能がほぼ同じであることが示されています。</p>
 <p>確かに、これらの結果をタブネットでダブルチェックして、それぞれの特徴の重要度を見るのは面白いでしょう。しかし、データセットのサイズを考えると、無視できないほどの計算リソース（と忍耐力）が必要になります。</p>
 <p>サイズといえば、ちょっと見てみましょう。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>higgs<span class="sc">%&gt;%</span><span class="fu">glimpse</span>()</span></code></pre></div>
+<pre class="r"><code>higgs%&gt;%glimpse()</code></pre>
 <pre><code>## Rows: 98,049
 ## Columns: 29
 ## $ class                    &lt;fct&gt; 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0…
@@ -359,27 +459,27 @@ tidymodelsのおかげで、ハイパーパラメータのチューニング（�
 <p>データが読み込まれたので、tidymodelsのワークフローを構築する準備ができました。</p>
 <div id="データ分割" class="section level2">
 <h2>1.データ分割</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n<span class="ot">&lt;-</span><span class="fu">nrow</span>(higgs)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n_test<span class="ot">&lt;-</span><span class="dv">1000</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>test_frac<span class="ot">&lt;-</span>n_test<span class="sc">/</span>n<span class="co">#(本文ミス？)</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>split<span class="ot">&lt;-</span><span class="fu">initial_time_split</span>(higgs,<span class="at">prop=</span><span class="dv">1</span><span class="sc">-</span>test_frac)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>train<span class="ot">&lt;-</span><span class="fu">training</span>(split)<span class="sc">%&gt;%</span><span class="fu">as.data.frame</span>()</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>test<span class="ot">&lt;-</span><span class="fu">testing</span>(split)<span class="sc">%&gt;%</span><span class="fu">as.data.frame</span>()</span></code></pre></div>
+<pre class="r"><code>n&lt;-nrow(higgs)
+n_test&lt;-1000
+test_frac&lt;-n_test/n#(本文ミス？)
+split&lt;-initial_time_split(higgs,prop=1-test_frac)
+train&lt;-training(split)%&gt;%as.data.frame()
+test&lt;-testing(split)%&gt;%as.data.frame()</code></pre>
 </div>
 <div id="レシピ作成" class="section level2">
 <h2>2.レシピ作成</h2>
 <p>他のすべての機能からクラスを予測したいと考えています。</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rec<span class="ot">&lt;-</span><span class="fu">recipe</span>(class<span class="sc">~</span>.,train)</span></code></pre></div>
+<pre class="r"><code>rec&lt;-recipe(class~.,train)</code></pre>
 </div>
 <div id="parsnipモデル作成" class="section level2">
 <h2>3.parsnipモデル作成</h2>
 <p>渡されるパラメータは，TabNet論文で報告されているもので，このデータセットで使用されているSサイズモデルのバリアントです．</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hyper parameter settings(apart from epochs)as per the TabNet paper(TabNet-S)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mod<span class="ot">&lt;-</span><span class="fu">tabnet</span>(<span class="at">epochs =</span> <span class="dv">3</span>, <span class="at">batch_size =</span> <span class="dv">4669</span>, <span class="at">decision_width =</span> <span class="dv">24</span>, <span class="at">attention_width =</span> <span class="dv">26</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">num_steps =</span> <span class="dv">5</span>, <span class="at">penalty =</span> <span class="fl">0.000001</span>, <span class="at">virtual_batch_size =</span> <span class="dv">512</span>, <span class="at">momentum =</span> <span class="fl">0.6</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">feature_reusage =</span> <span class="fl">1.5</span>, <span class="at">learn_rate =</span> <span class="fl">0.1</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;torch&quot;</span>,<span class="at">verbose=</span><span class="cn">TRUE</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;classification&quot;</span>)</span></code></pre></div>
+<pre class="r"><code>#hyper parameter settings(apart from epochs)as per the TabNet paper(TabNet-S)
+mod&lt;-tabnet(epochs = 3, batch_size = 4669, decision_width = 24, attention_width = 26,
+              num_steps = 5, penalty = 0.000001, virtual_batch_size = 512, momentum = 0.6,
+              feature_reusage = 1.5, learn_rate = 0.1)%&gt;%
+  set_engine(&quot;torch&quot;,verbose=TRUE)%&gt;%
+  set_mode(&quot;classification&quot;)</code></pre>
 <p>(learning rateは大きめ、batchsize小さめに変更))</p>
 <div id="appendix" class="section level3">
 <h3>Appendix</h3>
@@ -450,26 +550,26 @@ tidymodelsのおかげで、ハイパーパラメータのチューニング（�
 </div>
 <div id="ワークフローにバンドル" class="section level2">
 <h2>4.ワークフローにバンドル</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>wf<span class="ot">&lt;-</span><span class="fu">workflow</span>()<span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">add_model</span>(mod)<span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">add_recipe</span>(rec)</span></code></pre></div>
+<pre class="r"><code>wf&lt;-workflow()%&gt;%
+add_model(mod)%&gt;%
+add_recipe(rec)</code></pre>
 </div>
 <div id="モデル訓練" class="section level2">
 <h2>5.モデル訓練</h2>
 <p>これには時間がかかります。訓練が終わったら、訓練したparsnipモデルを保存します。</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fitted_model<span class="ot">&lt;-</span>wf<span class="sc">%&gt;%</span><span class="fu">fit</span>(train)</span></code></pre></div>
+<pre class="r"><code>fitted_model&lt;-wf%&gt;%fit(train)</code></pre>
 <pre><code>## [Epoch 001] Loss: 2.624500</code></pre>
 <pre><code>## [Epoch 002] Loss: 0.878270</code></pre>
 <pre><code>## [Epoch 003] Loss: 0.744870</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#parsnipモデルにアクセスし，RDS形式で保存します．</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#♪あなたがこれを読んだ時には、素敵なラッパーが存在するかもしれません。</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#https://github.com/mlverse/tabnet/issues/27を参照してください。</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#fitted_model$fit$fit$fit%&gt;%saveRDS(&quot;saved_model.rds&quot;)</span></span></code></pre></div>
+<pre class="r"><code>#parsnipモデルにアクセスし，RDS形式で保存します．
+#♪あなたがこれを読んだ時には、素敵なラッパーが存在するかもしれません。
+#https://github.com/mlverse/tabnet/issues/27を参照してください。
+#fitted_model$fit$fit$fit%&gt;%saveRDS(&quot;saved_model.rds&quot;)</code></pre>
 <p>3エポック後、損失は0.609でした。(注:本データではlossは異なります。)</p>
 <p>##6.予測/精度計算</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>preds<span class="ot">&lt;-</span>test<span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(fitted_model,test))</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>yardstick<span class="sc">::</span><span class="fu">accuracy</span>(preds,class,.pred_class)</span></code></pre></div>
+<pre class="r"><code>preds&lt;-test%&gt;%
+  bind_cols(predict(fitted_model,test))
+yardstick::accuracy(preds,class,.pred_class)</code></pre>
 <pre><code>## # A tibble: 1 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
@@ -483,26 +583,26 @@ tidymodelsのおかげで、ハイパーパラメータのチューニング（�
 <h1>TabNet tuning</h1>
 <p>ハイパーパラメータのチューニングのために、tidymodelsフレームワークはクロスバリデーションを利用します。かなりのサイズのデータセットでは、多少の時間と忍耐が必要です；この記事では、オブザベーションの1/1,000を使います。</p>
 <p>上記のワークフローへの変更は、モデル仕様から始まります。ほとんどの設定を固定したままにして、TabNet固有のハイパーパラメータであるdecision_width、attention_width、num_stepsを変更するとします。</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mod<span class="ot">&lt;-</span><span class="fu">tabnet</span>(<span class="at">epochs=</span><span class="dv">1</span>,<span class="at">batch_size=</span><span class="dv">4669</span>,<span class="at">decision_width=</span><span class="fu">tune</span>(),<span class="at">attention_width=</span><span class="fu">tune</span>(),</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">num_steps=</span><span class="fu">tune</span>(),<span class="at">penalty=</span><span class="fl">0.000001</span>,<span class="at">virtual_batch_size=</span><span class="dv">512</span>,<span class="at">momentum=</span><span class="fl">0.6</span>,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">feature_reusage=</span><span class="fl">1.5</span>,<span class="at">learn_rate=</span><span class="fu">tune</span>())<span class="sc">%&gt;%</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;torch&quot;</span>,<span class="at">verbose=</span><span class="cn">TRUE</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;classification&quot;</span>)</span></code></pre></div>
+<pre class="r"><code>mod&lt;-tabnet(epochs=1,batch_size=4669,decision_width=tune(),attention_width=tune(),
+            num_steps=tune(),penalty=0.000001,virtual_batch_size=512,momentum=0.6,
+            feature_reusage=1.5,learn_rate=tune())%&gt;%
+  set_engine(&quot;torch&quot;,verbose=TRUE)%&gt;%
+  set_mode(&quot;classification&quot;)</code></pre>
 <p>ワークフローの作成は以前と同じように見えます。</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>wf<span class="ot">&lt;-</span><span class="fu">workflow</span>()<span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(mod)<span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(rec)</span></code></pre></div>
+<pre class="r"><code>wf&lt;-workflow()%&gt;%
+  add_model(mod)%&gt;%
+  add_recipe(rec)</code></pre>
 <p>次に、興味のあるハイパーパラメータの範囲を指定して、dialsパッケージのグリッド構築関数を呼び出してグリッドを構築します。デモのためでなければ、8つ以上の選択肢を用意して、より大きなサイズをgrid_max_entropy()に渡したいと思うでしょう。</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>grid<span class="ot">&lt;-</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  wf<span class="sc">%&gt;%</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parameters</span>()<span class="sc">%&gt;%</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update</span>(</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">decision_width=</span><span class="fu">decision_width</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">40</span>)),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">attention_width=</span><span class="fu">attention_width</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">40</span>)),</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_steps=</span><span class="fu">num_steps</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">6</span>))</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">%&gt;%</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grid_max_entropy</span>(<span class="at">size=</span><span class="dv">8</span>)</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>grid</span></code></pre></div>
+<pre class="r"><code>grid&lt;-
+  wf%&gt;%
+  parameters()%&gt;%
+  update(
+    decision_width=decision_width(range=c(20,40)),
+    attention_width=attention_width(range=c(20,40)),
+    num_steps=num_steps(range=c(4,6))
+  )%&gt;%
+  grid_max_entropy(size=8)
+grid</code></pre>
 <pre><code>## # A tibble: 8 x 4
 ##   learn_rate decision_width attention_width num_steps
 ##        &lt;dbl&gt;          &lt;int&gt;           &lt;int&gt;     &lt;int&gt;
@@ -515,18 +615,18 @@ tidymodelsのおかげで、ハイパーパラメータのチューニング（�
 ## 7   3.54e- 5             35              31         4
 ## 8   1.47e- 5             28              23         5</code></pre>
 <p>空間を探索するために、新しいfinetuneパッケージのtune_race_anova()を使用し、5倍のクロスバリデーションを利用しています。</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ctrl<span class="ot">&lt;-</span><span class="fu">control_race</span>(<span class="at">verbose_elim=</span><span class="cn">TRUE</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>folds<span class="ot">&lt;-</span><span class="fu">vfold_cv</span>(train,<span class="at">v=</span><span class="dv">5</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">777</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># res&lt;-wf%&gt;%</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   tune_race_anova(</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     resamples=folds,</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     grid=grid,</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     control=ctrl</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span></code></pre></div>
+<pre class="r"><code>ctrl&lt;-control_race(verbose_elim=TRUE)
+folds&lt;-vfold_cv(train,v=5)
+set.seed(777)
+
+# res&lt;-wf%&gt;%
+#   tune_race_anova(
+#     resamples=folds,
+#     grid=grid,
+#     control=ctrl
+#   )</code></pre>
 <p>これで、最適なハイパーパラメータの組み合わせを抽出できるようになりました。</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># res%&gt;%show_best(&quot;accuracy&quot;)%&gt;%select(-c(.estimator,.config))</span></span></code></pre></div>
+<pre class="r"><code># res%&gt;%show_best(&quot;accuracy&quot;)%&gt;%select(-c(.estimator,.config))</code></pre>
 <p>これ以上便利なチューニングは想像に難くありません。</p>
 <div id="appendix-1" class="section level3">
 <h3>Appendix</h3>
@@ -547,41 +647,41 @@ tidymodelsのおかげで、ハイパーパラメータのチューニング（�
 <div id="per-feature-importances" class="section level2">
 <h2>PER-FEATURE IMPORTANCES</h2>
 <p>パート1の最後で終わらせたfitting_model workflow objectの続きです。vip::vipはparsnipモデルから直接特徴量を表示することができます。</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">pull_workflow_fit</span>(fitted_model)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vip</span>(fit)<span class="sc">+</span><span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-14-1.png" width="768" /></p>
+<pre class="r"><code>fit&lt;-pull_workflow_fit(fitted_model)
+vip(fit)+theme_minimal()</code></pre>
+<p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>これら2つのハイレベル機能が共に支配的で、全体の注目度の約50%を占めています。</p>
 <p>第4位にランクされた第3位のハイレベル機能とともに、これらは「重要度の高い空間」の約60%を占めています。</p>
 <div id="observation-level-feature-importances" class="section level4">
 <h4><strong>OBSERVATION-LEVEL FEATURE IMPORTANCES</strong></h4>
 <p>特徴の重要度を抽出するために、テスト・セットの最初の100個のオブザベーションを選択します。 TabNetがどのようにスパースを強制するかにより、多くの特徴が利用されていないことがわかります。</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ex_fit<span class="ot">&lt;-</span><span class="fu">tabnet_explain</span>(fit<span class="sc">$</span>fit,test[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,])</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ex_fit<span class="sc">$</span>M_explain<span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">observation=</span><span class="fu">row_number</span>())<span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>observation,<span class="at">names_to=</span><span class="st">&quot;variable&quot;</span>,<span class="at">values_to=</span><span class="st">&quot;m_agg&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>observation,<span class="at">y=</span>variable,<span class="at">fill=</span>m_agg))<span class="sc">+</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()<span class="sc">+</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>()</span></code></pre></div>
-<p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-15-1.png" width="768" /></p>
+<pre class="r"><code>ex_fit&lt;-tabnet_explain(fit$fit,test[1:100,])
+ex_fit$M_explain%&gt;%
+  mutate(observation=row_number())%&gt;%
+  pivot_longer(-observation,names_to=&quot;variable&quot;,values_to=&quot;m_agg&quot;)%&gt;%
+  ggplot(aes(x=observation,y=variable,fill=m_agg))+
+  geom_tile()+
+  theme_minimal()+
+  scale_fill_viridis_c()</code></pre>
+<p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
 <div id="per-stepobservation-level-feature-importances" class="section level4">
 <h4><strong>PER-STEP,OBSERVATION-LEVEL FEATURE IMPORTANCES</strong></h4>
 <p>最後に、同じオブザベーションの選択で、再びマスクを検査しますが、今回は決定ステップごとに検査します。</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ex_fit<span class="sc">$</span>masks<span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imap_dfr</span>(<span class="sc">~</span><span class="fu">mutate</span>(</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    .x,</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">step=</span><span class="fu">sprintf</span>(<span class="st">&quot;Step%d&quot;</span>,.y),</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">observation=</span><span class="fu">row_number</span>()</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  ))<span class="sc">%&gt;%</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span><span class="fu">c</span>(observation,step),<span class="at">names_to=</span><span class="st">&quot;variable&quot;</span>,<span class="at">values_to=</span><span class="st">&quot;m_agg&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>observation,<span class="at">y=</span>variable,<span class="at">fill=</span>m_agg))<span class="sc">+</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()<span class="sc">+</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">5</span>))<span class="sc">+</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>()<span class="sc">+</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>step)</span></code></pre></div>
-<p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-16-1.png" width="768" /></p>
+<pre class="r"><code>ex_fit$masks%&gt;%
+  imap_dfr(~mutate(
+    .x,
+    step=sprintf(&quot;Step%d&quot;,.y),
+    observation=row_number()
+  ))%&gt;%
+  pivot_longer(-c(observation,step),names_to=&quot;variable&quot;,values_to=&quot;m_agg&quot;)%&gt;%
+  ggplot(aes(x=observation,y=variable,fill=m_agg))+
+  geom_tile()+
+  theme_minimal()+
+  theme(axis.text=element_text(size=5))+
+  scale_fill_viridis_c()+
+  facet_wrap(~step)</code></pre>
+<p><img src="tabnet_HIGGS_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>これはいいですね。TabNetがさまざまな時期にさまざまな機能を利用していることがよくわかります。 では、これをどう活用すればいいのでしょうか？それは人それぞれです。このトピックの社会的な重要性（解釈可能性、説明可能性などと呼んでいます）を考えると、この記事の最後に簡単な議論をしておきましょう。</p>
 <p>(これ以降は翻訳から除外)</p>
 </div>
@@ -594,38 +694,79 @@ tidymodelsのおかげで、ハイパーパラメータのチューニング（�
 <li id="fn2"><p>データの1つまたは複数のリサンプルにわたってモデルまたはレシピに対応する事前定義されたチューニングパラメータのセットのパフォーマンスメトリクス（例えば、精度またはRMSE）のセットを計算します。<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
+
+
+
+</div>
 </div>
 
-   
-   
-              </div>
-  </div>
-  </div>
-  </div>
-   
-      
+</div>
 
-  <script>
-    $(document).ready(function () {
+<script>
 
-		// add bootstrap table styles to pandoc tables
-	$('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-		
- 		
-	    });
-  </script>
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
 
 
+</script>
 
-    <!-- dynamically load mathjax for compatibility with self-contained -->
-  <script>
-    (function () {
-	var script = document.createElement("script");
-	script.type = "text/javascript";
-	script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-	document.getElementsByTagName("head")[0].appendChild(script);
-    })();
-  </script>
-  
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
 </body>
 </html>
