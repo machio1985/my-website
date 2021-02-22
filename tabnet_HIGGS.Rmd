@@ -1,5 +1,9 @@
 ---
 title: "Tabnet_HIGGS"
+output:
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
 # Attention
@@ -125,9 +129,9 @@ rec<-recipe(class~.,train)
 
 ```{r}
 #hyper parameter settings(apart from epochs)as per the TabNet paper(TabNet-S)
-mod<-tabnet(epochs=3,batch_size=4669,decision_width=24,attention_width=26,
-            num_steps=5,penalty=0.000001,virtual_batch_size=512,momentum=0.6,
-            feature_reusage=1.5,learn_rate=0.02)%>%
+mod<-tabnet(epochs=10,batch_size=4669,decision_width=16,attention_width=16,
+            num_steps=5,penalty=0.0000001,virtual_batch_size=512,momentum=0.6,
+            feature_reusage=1.5,learn_rate=0.1)%>%
   set_engine("torch",verbose=TRUE)%>%
   set_mode("classification")
 ```
@@ -228,8 +232,6 @@ wf<-workflow()%>%
 
 次に、興味のあるハイパーパラメータの範囲を指定して、dialsパッケージのグリッド構築関数を呼び出してグリッドを構築します。デモのためでなければ、8つ以上の選択肢を用意して、より大きなサイズをgrid_max_entropy()に渡したいと思うでしょう。
 
-(注：sizeを更に小さめに変更)
-
 ```{r}
 grid<-
   wf%>%
@@ -239,18 +241,16 @@ grid<-
     attention_width=attention_width(range=c(20,40)),
     num_steps=num_steps(range=c(4,6))
   )%>%
-  grid_max_entropy(size=4)
+  grid_max_entropy(size=8)
 grid
 
 ```
 
 空間を探索するために、新しいfinetuneパッケージのtune_race_anova()を使用し、5倍のクロスバリデーションを利用しています。
 
-(注：cvも小さめに変更)
-
 ```{r}
 ctrl<-control_race(verbose_elim=TRUE)
-folds<-vfold_cv(train,v=3)
+folds<-vfold_cv(train,v=5)
 set.seed(777)
 
 # res<-wf%>%
@@ -278,7 +278,7 @@ set.seed(777)
 
 `finetune::tune_race_anova()`[^2]
 
-[^2]: データの1つまたは複数のリサンプルにわたってモデルまたはレシピに対応する事前定義されたチューニングパラメータのセットのパフォーマンスメトリクス（例えば、精度またはRMSE）のセットを計算します。 300
+[^2]: データの1つまたは複数のリサンプルにわたってモデルまたはレシピに対応する事前定義されたチューニングパラメータのセットのパフォーマンスメトリクス（例えば、精度またはRMSE）のセットを計算します。
 
 最初の数のリサンプルが評価された後、このプロセスは、反復測定ANOVAモデルを使用して最良の結果になりそうもないチューニング・パラメータの組み合わせを排除します。
 

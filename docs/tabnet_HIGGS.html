@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -219,6 +222,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -226,6 +292,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -249,7 +325,7 @@ $(document).ready(function () {
   <a href="about.html">About</a>
 </li>
 <li>
-  <a href="tabnet_HIGGS.html">Tabnet_HIGGS</a>
+  <a href="tabnet_HIGGS.html">tabnet_HIGGS</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -396,9 +472,9 @@ test&lt;-testing(split)%&gt;%as.data.frame()</code></pre>
 <h2>3.parsnipモデル作成</h2>
 <p>渡されるパラメータは，TabNet論文で報告されているもので，このデータセットで使用されているSサイズモデルのバリアントです．</p>
 <pre class="r"><code>#hyper parameter settings(apart from epochs)as per the TabNet paper(TabNet-S)
-mod&lt;-tabnet(epochs=3,batch_size=4669,decision_width=24,attention_width=26,
-            num_steps=5,penalty=0.000001,virtual_batch_size=512,momentum=0.6,
-            feature_reusage=1.5,learn_rate=0.02)%&gt;%
+mod&lt;-tabnet(epochs=10,batch_size=4669,decision_width=16,attention_width=16,
+            num_steps=5,penalty=0.0000001,virtual_batch_size=512,momentum=0.6,
+            feature_reusage=1.5,learn_rate=0.1)%&gt;%
   set_engine(&quot;torch&quot;,verbose=TRUE)%&gt;%
   set_mode(&quot;classification&quot;)</code></pre>
 <p>(learning rateは大きめ、batchsize小さめに変更))</p>
@@ -479,9 +555,16 @@ add_recipe(rec)</code></pre>
 <h2>5.モデル訓練</h2>
 <p>これには時間がかかります。訓練が終わったら、訓練したparsnipモデルを保存します。</p>
 <pre class="r"><code>fitted_model&lt;-wf%&gt;%fit(train)</code></pre>
-<pre><code>## [Epoch 001] Loss: 3.175046</code></pre>
-<pre><code>## [Epoch 002] Loss: 1.633342</code></pre>
-<pre><code>## [Epoch 003] Loss: 1.193075</code></pre>
+<pre><code>## [Epoch 001] Loss: 1.372895</code></pre>
+<pre><code>## [Epoch 002] Loss: 0.718632</code></pre>
+<pre><code>## [Epoch 003] Loss: 0.696145</code></pre>
+<pre><code>## [Epoch 004] Loss: 0.693836</code></pre>
+<pre><code>## [Epoch 005] Loss: 0.696097</code></pre>
+<pre><code>## [Epoch 006] Loss: 0.691997</code></pre>
+<pre><code>## [Epoch 007] Loss: 0.691397</code></pre>
+<pre><code>## [Epoch 008] Loss: 0.688797</code></pre>
+<pre><code>## [Epoch 009] Loss: 0.686759</code></pre>
+<pre><code>## [Epoch 010] Loss: 0.684464</code></pre>
 <pre class="r"><code>#parsnipモデルにアクセスし，RDS形式で保存します．
 #♪あなたがこれを読んだ時には、素敵なラッパーが存在するかもしれません。
 #https://github.com/mlverse/tabnet/issues/27を参照してください。
@@ -494,7 +577,7 @@ yardstick::accuracy(preds,class,.pred_class)</code></pre>
 <pre><code>## # A tibble: 1 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.518</code></pre>
+## 1 accuracy binary         0.516</code></pre>
 <p>TabNet論文で報告されている精度(0.783)には到達しませんでしたが、ほんの一部の時間しか訓練していません。</p>
 <p>ニューラルネットワークを簡単に学習する方法としては、とても良い方法だった！と思っている方のために、ハイパーパラメータのチューニングがどれだけ簡単にできるかを見てみましょう。</p>
 <p>-ハイパーパラメータのチューニングがどれだけ簡単にできるかを待ってみてください。実際、待つ必要はありません。</p>
@@ -616,6 +699,8 @@ ex_fit$M_explain%&gt;%
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -648,6 +733,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
