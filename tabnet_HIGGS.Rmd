@@ -1,11 +1,5 @@
 ---
 title: "Tabnet_HIGGS"
-output:
-  html_document:
-    toc: true
-    toc_float: true
-  rmdformats::downcute:
-    self_contained: true
 ---
 
 # Attention
